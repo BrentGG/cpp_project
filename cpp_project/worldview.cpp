@@ -1,8 +1,8 @@
-#include "tetrisscreen.h"
+#include "worldview.h"
 
 #include<QPainter>
 
-TetrisScreen::TetrisScreen(QWidget *parent) : QWidget{parent}
+WorldView::WorldView(QWidget *parent) : QWidget{parent}
 {
     x = 50;
     y = 50;
@@ -10,13 +10,13 @@ TetrisScreen::TetrisScreen(QWidget *parent) : QWidget{parent}
     setFocusPolicy(Qt::StrongFocus); // Focus otherwise keypressed don't get passed to this widget
 }
 
-void TetrisScreen::paintEvent(QPaintEvent *event)
+void WorldView::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     painter.drawRect(x, y, 5, 5);
 }
 
-void TetrisScreen::keyPressEvent(QKeyEvent *event)
+void WorldView::keyPressEvent(QKeyEvent *event)
 {
 
     if(event->key() == Qt::Key_D)

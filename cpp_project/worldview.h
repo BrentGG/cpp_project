@@ -1,14 +1,14 @@
-#ifndef TETRISSCREEN_H
-#define TETRISSCREEN_H
+#ifndef WORLDVIEW_H
+#define WORLDVIEW_H
 
 #include <QWidget>
 #include <QKeyEvent>
 
-class TetrisScreen : public QWidget
+class WorldView : public QWidget
 {
     Q_OBJECT
 public:
-    explicit TetrisScreen(QWidget *parent = nullptr);
+    explicit WorldView(QWidget *parent = nullptr);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -20,4 +20,4 @@ private:
     int mvmtSpeed;
 };
 
-#endif // TETRISSCREEN_H
+#endif // WORLDVIEW_H

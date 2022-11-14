@@ -8,9 +8,3 @@ Character::Character(Coords *hitBox, Coords *position, unsigned int speed, unsig
     hitBox(hitBox), position(position), speed(speed), maxHealth(maxHealth), currentHealth(currentHealth)
 {
 }
-
-Character::~Character()
-{
-    delete hitBox;
-    delete position;
-}

@@ -1,26 +1,11 @@
 #ifndef WORLDVIEW_H
 #define WORLDVIEW_H
 
-#include <QWidget>
-#include <QKeyEvent>
 
-class WorldView : public QWidget
+class WorldView
 {
-    Q_OBJECT
 public:
-    explicit WorldView(QWidget *parent = nullptr);
-
-protected:
-    void paintEvent(QPaintEvent *event) override;
-    void keyPressEvent(QKeyEvent *event) override;
-
-private:
-    int x;
-    int y;
-    int mvmtSpeed;
-
-private slots:
-    void updateView();
+    WorldView();
 };
 
 #endif // WORLDVIEW_H

@@ -1,11 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "worldview.h"
+#include "canvas.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    WorldView *worldView = new WorldView();
+    Canvas *worldView = new Canvas();
     setCentralWidget(worldView);
 }
 

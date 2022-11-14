@@ -18,6 +18,9 @@ private:
     int x;
     int y;
     int mvmtSpeed;
+
+private slots:
+    void updateView();
 };
 
 #endif // WORLDVIEW_H

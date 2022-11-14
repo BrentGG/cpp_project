@@ -1,6 +1,9 @@
 #include "worldview.h"
 
+#include <iostream>
+
 #include<QPainter>
+#include <QTimer>
 
 WorldView::WorldView(QWidget *parent) : QWidget{parent}
 {
@@ -8,6 +11,9 @@ WorldView::WorldView(QWidget *parent) : QWidget{parent}
     y = 50;
     mvmtSpeed = 5;
     setFocusPolicy(Qt::StrongFocus); // Focus otherwise keypressed don't get passed to this widget
+    QTimer *timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, QOverload<>::of(&WorldView::updateView));
+    timer->start(1000/60); // target fps = 60
 }
 
 void WorldView::paintEvent(QPaintEvent *event)
@@ -27,5 +33,9 @@ void WorldView::keyPressEvent(QKeyEvent *event)
         y -= mvmtSpeed;
     if(event->key() == Qt::Key_S)
         y += mvmtSpeed;
+}
+
+void WorldView::updateView()
+{
     update();
 }

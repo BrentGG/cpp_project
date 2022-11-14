@@ -2,5 +2,5 @@
 
 GameController::GameController()
 {
-
+    gameModel = new Game();
 }

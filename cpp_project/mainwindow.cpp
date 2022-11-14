@@ -5,8 +5,11 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    Canvas *worldView = new Canvas();
-    setCentralWidget(worldView);
+
+    gameController = new GameController();
+
+    Canvas *canvas = new Canvas();
+    setCentralWidget(canvas);
 }
 
 MainWindow::~MainWindow()

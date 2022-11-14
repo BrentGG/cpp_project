@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include<QPainter>
+#include <QPainter>
 #include <QTimer>
 
 Canvas::Canvas(QWidget *parent) : QWidget{parent}

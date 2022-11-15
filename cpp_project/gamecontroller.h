@@ -3,11 +3,19 @@
 
 #include "game.h"
 
+#include <QKeyEvent>
 
 class GameController
 {
 public:
     GameController();
+
+    void keyPressed(int key);
+    void keyReleased(int key);
+
+    void tick();
+
+    Player* getPlayer();
 
 private:
     Game* gameModel;

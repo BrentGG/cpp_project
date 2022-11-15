@@ -7,6 +7,21 @@ class Player : public Character
 {
 public:
     Player();
+    Player(Coords* hitBox, Coords* position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth);
+
+    void move() override;
+    void modifyHealth(int amount) override;
+
+    void setGoingUp(bool goingUp);
+    void setGoingDown(bool goingDown);
+    void setGoingLeft(bool goingLeft);
+    void setGoingRight(bool goingRight);
+
+private:
+    bool goingUp;
+    bool goingDown;
+    bool goingLeft;
+    bool goingRight;
 };
 
 #endif // PLAYER_H

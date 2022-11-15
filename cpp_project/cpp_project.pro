@@ -10,29 +10,29 @@ CONFIG += c++17
 
 SOURCES += \
     canvas.cpp \
+    canvasdrawing.cpp \
     character.cpp \
-    characterview.cpp \
+    characterdrawing.cpp \
     enemy.cpp \
     game.cpp \
     gamecontroller.cpp \
     main.cpp \
     mainwindow.cpp \
     player.cpp \
-    world.cpp \
-    worldview.cpp
+    world.cpp
 
 HEADERS += \
     canvas.h \
+    canvasdrawing.h \
     character.h \
-    characterview.h \
+    characterdrawing.h \
     coords.h \
     enemy.h \
     game.h \
     gamecontroller.h \
     mainwindow.h \
     player.h \
-    world.h \
-    worldview.h
+    world.h
 
 FORMS += \
     mainwindow.ui

@@ -13,12 +13,15 @@ class Character
 public:
     Character();
     Character(Coords* hitBox, Coords* position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth);
-    virtual ~Character() = 0;
+    ~Character();
 
     virtual void move() = 0;
     virtual void modifyHealth(int amount) = 0;
 
-private:
+    Coords *getHitBox();
+    Coords *getPosition();
+
+protected:
     Coords* hitBox;
     Coords* position;
 

@@ -1,6 +1,6 @@
 #include "player.h"
 
-#include <iostream>
+#include <math.h>
 
 Player::Player()
 {
@@ -29,8 +29,23 @@ void Player::move(float timeDeltaMs)
         position->addX(-1 * distanceMoved);
     else if (goingRight && !goingUp && !goingDown && !goingLeft)
         position->addX(distanceMoved);
+    else if (goingUp && goingLeft && !goingRight && !goingDown) {
+        position->addX(-1 * std::sin(45) * distanceMoved);
+        position->addY(-1 * std::sin(45) * distanceMoved);
+    }
+    else if (goingUp && goingRight && !goingLeft && !goingDown) {
+        position->addX(std::sin(45) * distanceMoved);
+        position->addY(-1 * std::sin(45) * distanceMoved);
+    }
+    else if (goingDown && goingLeft && !goingRight && !goingUp) {
+        position->addX(-1 * std::sin(45) * distanceMoved);
+        position->addY(std::sin(45) * distanceMoved);
+    }
+    else if (goingDown && goingRight && !goingLeft && !goingUp) {
+        position->addX(std::sin(45) * distanceMoved);
+        position->addY(std::sin(45) * distanceMoved);
+    }
     distanceMoved = 0;
-    // TODO: add diagonal movement
 }
 
 void Player::modifyHealth(int amount)

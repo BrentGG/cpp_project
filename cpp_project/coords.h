@@ -15,6 +15,9 @@ public:
     void setX(unsigned int x) { xCoord = x; }
     void setY(unsigned int y) { yCoord = y; }
 
+    void addX(int x) { xCoord += x; }
+    void addY(int y) { yCoord += y; }
+
 private:
     unsigned int xCoord;
     unsigned int yCoord;

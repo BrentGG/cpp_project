@@ -12,27 +12,31 @@ SOURCES += \
     canvas.cpp \
     canvasdrawing.cpp \
     character.cpp \
-    characterdrawing.cpp \
     enemy.cpp \
     game.cpp \
     gamecontroller.cpp \
     main.cpp \
     mainwindow.cpp \
     player.cpp \
-    world.cpp
+    playerdrawing.cpp \
+    world.cpp \
+    zombie.cpp \
+    zombiedrawing.cpp
 
 HEADERS += \
     canvas.h \
     canvasdrawing.h \
     character.h \
-    characterdrawing.h \
     coords.h \
     enemy.h \
     game.h \
     gamecontroller.h \
     mainwindow.h \
     player.h \
-    world.h
+    playerdrawing.h \
+    world.h \
+    zombie.h \
+    zombiedrawing.h
 
 FORMS += \
     mainwindow.ui

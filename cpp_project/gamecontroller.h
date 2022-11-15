@@ -16,6 +16,7 @@ public:
     void tick(float timeDeltaMs);
 
     Player* getPlayer();
+    std::vector<Zombie*> getZombies();
 
 private:
     Game* gameModel;

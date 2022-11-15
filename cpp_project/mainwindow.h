@@ -3,7 +3,6 @@
 
 #include "gamecontroller.h"
 #include "canvas.h"
-#include "characterdrawing.h"
 
 #include <QMainWindow>
 #include <QKeyEvent>
@@ -31,7 +30,6 @@ private:
     GameController* gameController;
 
     Canvas* canvas;
-    CharacterDrawing* canvasDrawing;
 
     std::chrono::time_point<std::chrono::high_resolution_clock> timeDeltaStart;
 

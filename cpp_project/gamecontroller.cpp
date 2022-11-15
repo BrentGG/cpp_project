@@ -31,10 +31,15 @@ void GameController::keyReleased(int key)
 
 void GameController::tick(float timeDeltaMs)
 {
-    gameModel->getPlayer()->move(timeDeltaMs);
+    gameModel->tick(timeDeltaMs);
 }
 
-Player *GameController::getPlayer()
+Player* GameController::getPlayer()
 {
     return gameModel->getPlayer();
+}
+
+std::vector<Zombie*> GameController::getZombies()
+{
+    return gameModel->getZombies();
 }

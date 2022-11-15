@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "playerdrawing.h"
+#include "zombiedrawing.h"
 
 #include <QTimer>
 
@@ -17,8 +19,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     setFocusPolicy(Qt::StrongFocus);
 
     // Create canvas drawings
-    canvasDrawing = new CharacterDrawing(gameController->getPlayer());
-    canvas->addDrawing(canvasDrawing);
+    canvas->addDrawing(new PlayerDrawing(gameController->getPlayer()));
+    for (int i = 0; i < gameController->getZombies().size(); ++i)
+        canvas->addDrawing(new ZombieDrawing(gameController->getZombies().at(i)));
 
     // Set timer to update view
     QTimer *timer = new QTimer(this);

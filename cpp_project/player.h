@@ -9,7 +9,7 @@ public:
     Player();
     Player(Coords* hitBox, Coords* position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth);
 
-    void move() override;
+    void move(float timeDeltaMs) override;
     void modifyHealth(int amount) override;
 
     void setGoingUp(bool goingUp);

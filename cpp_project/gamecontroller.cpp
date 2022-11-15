@@ -29,9 +29,9 @@ void GameController::keyReleased(int key)
         gameModel->getPlayer()->setGoingRight(false);
 }
 
-void GameController::tick()
+void GameController::tick(float timeDeltaMs)
 {
-    gameModel->getPlayer()->move();
+    gameModel->getPlayer()->move(timeDeltaMs);
 }
 
 Player *GameController::getPlayer()

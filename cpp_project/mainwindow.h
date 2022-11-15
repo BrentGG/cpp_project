@@ -8,6 +8,8 @@
 #include <QMainWindow>
 #include <QKeyEvent>
 
+#include <chrono>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -29,8 +31,9 @@ private:
     GameController* gameController;
 
     Canvas* canvas;
-
     CharacterDrawing* canvasDrawing;
+
+    std::chrono::time_point<std::chrono::high_resolution_clock> timeDeltaStart;
 
 private slots:
     void updateView();

@@ -3,6 +3,8 @@
 
 #include <QTimer>
 
+#include <iostream>
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -22,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWindow::updateView);
     timer->start(1000/60); // target fps = 60
+    timeDeltaStart = std::chrono::high_resolution_clock::now();
 }
 
 MainWindow::~MainWindow()
@@ -41,7 +44,10 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
 
 void MainWindow::updateView()
 {
-    gameController->tick();
+    std::chrono::time_point<std::chrono::high_resolution_clock> timeDeltaEnd = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<float> timeDelta = timeDeltaEnd - timeDeltaStart;
+    timeDeltaStart = timeDeltaEnd;
+    gameController->tick(timeDelta.count() * 1000);
     canvas->updateCanvas();
     update();
 }

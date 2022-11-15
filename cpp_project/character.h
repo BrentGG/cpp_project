@@ -15,7 +15,7 @@ public:
     Character(Coords* hitBox, Coords* position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth);
     ~Character();
 
-    virtual void move() = 0;
+    virtual void move(float timeDeltaMs) = 0;
     virtual void modifyHealth(int amount) = 0;
 
     Coords *getHitBox();
@@ -26,9 +26,11 @@ protected:
     Coords* position;
 
     // Stats
-    unsigned int speed;
+    unsigned int speed; // pixels moved per second
     unsigned int maxHealth;
     unsigned int currentHealth;
+
+    float distanceMoved;
 };
 
 #endif // CHARACTER_H

@@ -13,7 +13,7 @@ public:
     void keyPressed(int key);
     void keyReleased(int key);
 
-    void tick();
+    void tick(float timeDeltaMs);
 
     Player* getPlayer();
 

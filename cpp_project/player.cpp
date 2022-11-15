@@ -1,5 +1,7 @@
 #include "player.h"
 
+#include <iostream>
+
 Player::Player()
 {
 
@@ -14,16 +16,20 @@ Player::Player(Coords *hitBox, Coords *position, unsigned int speed, unsigned in
     goingRight = false;
 }
 
-void Player::move()
+void Player::move(float timeDeltaMs)
 {
+    distanceMoved += speed * (timeDeltaMs / 1000);
+    if (distanceMoved < 1)
+        return;
     if (goingUp && !goingLeft && !goingRight && !goingDown)
-        position->addY(-1 * (int) speed);
+        position->addY(-1 * distanceMoved);
     else if (goingDown && !goingLeft && !goingRight && !goingUp)
-        position->addY((int) speed);
+        position->addY(distanceMoved);
     else if (goingLeft && !goingUp && !goingDown && !goingRight)
-        position->addX(-1 * (int) speed);
+        position->addX(-1 * distanceMoved);
     else if (goingRight && !goingUp && !goingDown && !goingLeft)
-        position->addX((int) speed);
+        position->addX(distanceMoved);
+    distanceMoved = 0;
     // TODO: add diagonal movement
 }
 

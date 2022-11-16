@@ -30,7 +30,7 @@ protected:
     unsigned int maxHealth;
     unsigned int currentHealth;
 
-    float distanceMoved;
+    float moveAllowance;
 };
 
 #endif // CHARACTER_H

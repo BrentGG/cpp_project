@@ -21,20 +21,20 @@ Player::Player(Coords *hitBox, Coords *position, unsigned int speed, unsigned in
 
 void Player::move(float timeDeltaMs)
 {
-    distanceMoved += speed * (timeDeltaMs / 1000);
-    if (distanceMoved < 3)
+    moveAllowance += speed * (timeDeltaMs / 1000);
+    if (moveAllowance < 3)
         return;
     // straight movement
     if (goingUp && !goingLeft && !goingRight && !goingDown)
-        position->addY(-1 * distanceMoved);
+        position->addY(-1 * moveAllowance);
     else if (goingDown && !goingLeft && !goingRight && !goingUp)
-        position->addY(distanceMoved);
+        position->addY(moveAllowance);
     else if (goingLeft && !goingUp && !goingDown && !goingRight)
-        position->addX(-1 * distanceMoved);
+        position->addX(-1 * moveAllowance);
     else if (goingRight && !goingUp && !goingDown && !goingLeft)
-        position->addX(distanceMoved);
+        position->addX(moveAllowance);
     else { // diagonal movement
-        float dist = std::floor(std::sqrt(distanceMoved * distanceMoved / 2));
+        float dist = std::floor(std::sqrt(moveAllowance * moveAllowance / 2));
         if (goingUp && goingLeft && !goingRight && !goingDown) {
             position->addX(-1 * dist);
             position->addY(-1 * dist);
@@ -52,7 +52,7 @@ void Player::move(float timeDeltaMs)
             position->addY(dist);
         }
     }
-    distanceMoved = 0;
+    moveAllowance = 0;
 }
 
 void Player::modifyHealth(int amount)

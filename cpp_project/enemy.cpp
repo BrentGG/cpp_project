@@ -14,3 +14,8 @@ void Enemy::setTarget(Coords *target)
 {
     this->target = target;
 }
+
+Coords *Enemy::getTarget()
+{
+    return target;
+}

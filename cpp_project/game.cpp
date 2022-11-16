@@ -26,6 +26,8 @@ std::vector<Zombie*> Game::getZombies()
 void Game::tick(float timeDeltaMs)
 {
     player->move(timeDeltaMs);
-    for (Zombie* zombie: zombies)
+    for (Zombie* zombie: zombies) {
+        zombie->setTarget(player->getPosition());
         zombie->move(timeDeltaMs);
+    }
 }

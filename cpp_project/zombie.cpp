@@ -21,12 +21,15 @@ void Zombie::move(float timeDeltaMs)
     distanceMoved += speed * (timeDeltaMs / 1000);
     if (distanceMoved < 1)
         return;
-
-    int xDif = position->x() - target->x();
+    int xDif = target->x() - position->x();
     int yDif = target->y() - position->y();
-    float angle = std::atan2(yDif, xDif) * (180 / M_PI);
-    position->addX(-1 * std::cos(angle) * distanceMoved);
-    position->addY(std::sin(angle) * distanceMoved);
+    float angle = std::atan2(yDif, xDif);
+    float xDist = std::round(std::cos(angle) * distanceMoved);
+    float yDist = std::round(std::sin(angle) * distanceMoved);
+    if (std::hypot(xDist, yDist) > distanceMoved)
+        return;
+    position->addX(xDist);
+    position->addY(yDist);
 
     distanceMoved = 0;
 }

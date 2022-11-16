@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+
 #include "player.h"
 
 #include <math.h>
@@ -21,6 +23,7 @@ void Player::move(float timeDeltaMs)
     distanceMoved += speed * (timeDeltaMs / 1000);
     if (distanceMoved < 1)
         return;
+    // straight movement
     if (goingUp && !goingLeft && !goingRight && !goingDown)
         position->addY(-1 * distanceMoved);
     else if (goingDown && !goingLeft && !goingRight && !goingUp)
@@ -29,21 +32,26 @@ void Player::move(float timeDeltaMs)
         position->addX(-1 * distanceMoved);
     else if (goingRight && !goingUp && !goingDown && !goingLeft)
         position->addX(distanceMoved);
-    else if (goingUp && goingLeft && !goingRight && !goingDown) {
-        position->addX(-1 * std::sin(45) * distanceMoved);
-        position->addY(-1 * std::sin(45) * distanceMoved);
-    }
-    else if (goingUp && goingRight && !goingLeft && !goingDown) {
-        position->addX(std::sin(45) * distanceMoved);
-        position->addY(-1 * std::sin(45) * distanceMoved);
-    }
-    else if (goingDown && goingLeft && !goingRight && !goingUp) {
-        position->addX(-1 * std::sin(45) * distanceMoved);
-        position->addY(std::sin(45) * distanceMoved);
-    }
-    else if (goingDown && goingRight && !goingLeft && !goingUp) {
-        position->addX(std::sin(45) * distanceMoved);
-        position->addY(std::sin(45) * distanceMoved);
+    else { // diagonal movement
+        float dist = std::sin(45 * (M_PI/180)) * distanceMoved;
+        if (std::hypot(dist, dist) > distanceMoved)
+            return;
+        if (goingUp && goingLeft && !goingRight && !goingDown) {
+            position->addX(-1 * dist);
+            position->addY(-1 * dist);
+        }
+        else if (goingUp && goingRight && !goingLeft && !goingDown) {
+            position->addX(dist);
+            position->addY(-1 * dist);
+        }
+        else if (goingDown && goingLeft && !goingRight && !goingUp) {
+            position->addX(-1 * dist);
+            position->addY(dist);
+        }
+        else if (goingDown && goingRight && !goingLeft && !goingUp) {
+            position->addX(dist);
+            position->addY(dist);
+        }
     }
     distanceMoved = 0;
 }

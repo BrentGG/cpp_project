@@ -3,6 +3,7 @@
 #include "player.h"
 
 #include <math.h>
+#include <iostream>
 
 Player::Player()
 {
@@ -21,7 +22,7 @@ Player::Player(Coords *hitBox, Coords *position, unsigned int speed, unsigned in
 void Player::move(float timeDeltaMs)
 {
     distanceMoved += speed * (timeDeltaMs / 1000);
-    if (distanceMoved < 1)
+    if (distanceMoved < 3)
         return;
     // straight movement
     if (goingUp && !goingLeft && !goingRight && !goingDown)
@@ -33,9 +34,7 @@ void Player::move(float timeDeltaMs)
     else if (goingRight && !goingUp && !goingDown && !goingLeft)
         position->addX(distanceMoved);
     else { // diagonal movement
-        float dist = std::sin(45 * (M_PI/180)) * distanceMoved;
-        if (std::hypot(dist, dist) > distanceMoved)
-            return;
+        float dist = std::floor(std::sqrt(distanceMoved * distanceMoved / 2));
         if (goingUp && goingLeft && !goingRight && !goingDown) {
             position->addX(-1 * dist);
             position->addY(-1 * dist);

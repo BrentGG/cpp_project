@@ -20,8 +20,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     // Create canvas drawings
     canvas->addDrawing(new PlayerDrawing(gameController->getPlayer()));
-    for (int i = 0; i < gameController->getZombies().size(); ++i)
-        canvas->addDrawing(new ZombieDrawing(gameController->getZombies().at(i)));
+    for (int i = 0; i < gameController->getEnemies().size(); ++i) {
+        if (gameController->getEnemyTypes()[i] == ZOMBIE)
+            canvas->addDrawing(new ZombieDrawing((Zombie*) gameController->getEnemies()[i]));
+    }
 
     // Set timer to update view
     QTimer *timer = new QTimer(this);

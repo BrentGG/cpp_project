@@ -2,9 +2,13 @@
 #define GAME_H
 
 #include "player.h"
-#include "zombie.h"
+#include "enemy.h"
 
 #include <vector>
+
+enum ENEMY_TYPE {
+    ZOMBIE
+};
 
 class Game
 {
@@ -14,11 +18,13 @@ public:
     void tick(float timeDeltaMs);
 
     Player* getPlayer();
-    std::vector<Zombie*> getZombies();
+    std::vector<Enemy*> getEnemies();
+    std::vector<ENEMY_TYPE> getEnemyTypes();
 
 private:
     Player* player;
-    std::vector<Zombie*> zombies;
+    std::vector<Enemy*> enemies;
+    std::vector<ENEMY_TYPE> enemyTypes;
 };
 
 #endif // GAME_H

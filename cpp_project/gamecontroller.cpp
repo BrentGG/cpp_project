@@ -39,7 +39,12 @@ Player* GameController::getPlayer()
     return gameModel->getPlayer();
 }
 
-std::vector<Zombie*> GameController::getZombies()
+std::vector<Enemy*> GameController::getEnemies()
 {
-    return gameModel->getZombies();
+    return gameModel->getEnemies();
+}
+
+std::vector<ENEMY_TYPE> GameController::getEnemyTypes()
+{
+    return gameModel->getEnemyTypes();
 }

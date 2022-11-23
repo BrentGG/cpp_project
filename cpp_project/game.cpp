@@ -22,31 +22,14 @@ void Game::tick(float timeDeltaMs)
     for (Zombie* zombie : zombies) {
         zombie->setTarget(player->getPosition());
         zombie->move(timeDeltaMs);
-    }
-
-    // check collisions
-    checkEnemyCollisions();
-}
-
-void Game::checkEnemyCollisions()
-{
-    std::vector<Enemy*> enemies;
-    enemies.insert(enemies.end(), zombies.begin(), zombies.end());
-
-    for (int i = 0; i < enemies.size(); ++i) {
-        for (int j = 0; j < enemies.size(); ++j) {
-            if (i == j)
-                continue;
-            if (checkEnemyCollosion(enemies[i], enemies[j]) && enemies[i]->getMoved()) {
-                enemies[i]->revertPosition();
-                enemies[i]->moveOnlyX();
-                if (checkEnemyCollosion(enemies[i], enemies[j])) {
-                    enemies[i]->revertPosition();
-                    enemies[i]->moveOnlyY();
-                    if (checkEnemyCollosion(enemies[i], enemies[j]))
-                        enemies[i]->revertPosition();
-                }
-                break;
+        if (checkEnemyCollides(zombie) && zombie->getMoved()) {
+            zombie->revertPosition();
+            zombie->moveOnlyX();
+            if (checkEnemyCollides(zombie)) {
+                zombie->revertPosition();
+                zombie->moveOnlyY();
+                if (checkEnemyCollides(zombie))
+                    zombie->revertPosition();
             }
         }
     }
@@ -63,6 +46,17 @@ bool Game::checkEnemyCollosion(Enemy* enemy1, Enemy* enemy2)
          enemy1Pos.y() < enemy2Pos.y() + enemy2HitBox.y() &&
          enemy2Pos.y() < enemy1Pos.y() + enemy1HitBox.y())) {
         return true;
+    }
+    return false;
+}
+
+bool Game::checkEnemyCollides(Enemy *enemy)
+{
+    std::vector<Enemy*> enemies;
+    enemies.insert(enemies.end(), zombies.begin(), zombies.end());
+    for (Enemy* enemy2 : enemies) {
+        if (enemy != enemy2 && checkEnemyCollosion(enemy, enemy2))
+            return true;
     }
     return false;
 }

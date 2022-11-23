@@ -12,8 +12,8 @@ public:
     Game();
 
     void tick(float timeDeltaMs);
-    void checkEnemyCollisions();
     bool checkEnemyCollosion(Enemy* enemy1, Enemy* enemy2);
+    bool checkEnemyCollides(Enemy* enemy);
 
     Player* getPlayer();
     std::vector<Zombie*> getZombies();

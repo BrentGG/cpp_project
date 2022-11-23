@@ -19,6 +19,7 @@ Zombie::Zombie(Coords *hitBox, Coords *position, unsigned int speed, unsigned in
 void Zombie::move(float timeDeltaMs)
 {
     moveAllowance += speed * (timeDeltaMs / 1000);
+    moved = false;
     if (moveAllowance < 1)
         return;
     int xDif = target->x() - position->x();
@@ -28,10 +29,23 @@ void Zombie::move(float timeDeltaMs)
     float yDist = std::round(std::sin(angle) * moveAllowance);
     if (std::hypot(xDist, yDist) > moveAllowance)
         return;
+    *prevPosition = *position;
     position->addX(xDist);
     position->addY(yDist);
 
+    moved = true;
+    prevMoveAllowance = moveAllowance;
     moveAllowance = 0;
+}
+
+void Zombie::moveOnlyX()
+{
+    position->addX(std::round(target->x() > position->x() ? moveAllowance : -1 * moveAllowance));
+}
+
+void Zombie::moveOnlyY()
+{
+    position->addY(std::round(target->y() > position->y() ? moveAllowance : -1 * moveAllowance));
 }
 
 void Zombie::modifyHealth(int amount)

@@ -6,7 +6,6 @@
 class Player : public Character
 {
 public:
-    Player();
     Player(Coords* hitBox, Coords* position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth);
 
     void move(float timeDeltaMs) override;

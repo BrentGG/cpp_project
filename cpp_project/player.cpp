@@ -5,11 +5,6 @@
 #include <math.h>
 #include <iostream>
 
-Player::Player()
-{
-
-}
-
 Player::Player(Coords *hitBox, Coords *position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth):
     Character(hitBox, position, speed, maxHealth, currentHealth)
 {

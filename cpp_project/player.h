@@ -6,10 +6,10 @@
 class Player : public Character
 {
 public:
-    Player(Coords* hitBox, Coords* position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth);
+    Player(Coords* hitBox, Coords* position, unsigned short int speed, unsigned short int maxHealth, unsigned short int currentHealth);
 
     void move(float timeDeltaMs) override;
-    void modifyHealth(int amount) override;
+    void modifyHealth(short int amount) override;
 
     void setGoingUp(bool goingUp);
     void setGoingDown(bool goingDown);

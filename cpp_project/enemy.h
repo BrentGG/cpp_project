@@ -6,7 +6,7 @@
 class Enemy : public Character
 {
 public:
-    Enemy(Coords* hitBox, Coords* position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth, Coords* target);
+    Enemy(Coords* hitBox, Coords* position, unsigned short int speed, unsigned short int maxHealth, unsigned short int currentHealth, Coords* target);
 
     virtual void moveOnlyX() = 0;
     virtual void moveOnlyY() = 0;

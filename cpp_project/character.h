@@ -11,11 +11,11 @@
 class Character
 {
 public:
-    Character(Coords* hitBox, Coords* position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth);
+    Character(Coords* hitBox, Coords* position, unsigned short int speed, unsigned short int maxHealth, unsigned short int currentHealth);
     virtual ~Character();
 
     virtual void move(float timeDeltaMs) = 0;
-    virtual void modifyHealth(int amount) = 0;
+    virtual void modifyHealth(short int amount) = 0;
 
     Coords *getHitBox();
     Coords *getPosition();
@@ -25,9 +25,9 @@ protected:
     Coords* position;
 
     // Stats
-    unsigned int speed; // pixels moved per second
-    unsigned int maxHealth;
-    unsigned int currentHealth;
+    unsigned short int speed; // pixels moved per second
+    unsigned short int maxHealth;
+    unsigned short int currentHealth;
 
     float moveAllowance;
 };

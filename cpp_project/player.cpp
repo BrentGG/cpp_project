@@ -5,7 +5,7 @@
 #include <math.h>
 #include <iostream>
 
-Player::Player(Coords *hitBox, Coords *position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth):
+Player::Player(Coords *hitBox, Coords *position, unsigned short int speed, unsigned short int maxHealth, unsigned short int currentHealth):
     Character(hitBox, position, speed, maxHealth, currentHealth)
 {
     goingUp = false;
@@ -50,7 +50,7 @@ void Player::move(float timeDeltaMs)
     moveAllowance = 0;
 }
 
-void Player::modifyHealth(int amount)
+void Player::modifyHealth(short int amount)
 {
     currentHealth += amount;
 }

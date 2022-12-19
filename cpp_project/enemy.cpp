@@ -1,6 +1,6 @@
 #include "enemy.h"
 
-Enemy::Enemy(Coords *hitBox, Coords *position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth, Coords* target):
+Enemy::Enemy(Coords *hitBox, Coords *position, unsigned short int speed, unsigned short int maxHealth, unsigned short int currentHealth, Coords* target):
     Character(hitBox, position, speed, maxHealth, currentHealth), target(target)
 {
     prevPosition = new Coords(position->x(), position->y());

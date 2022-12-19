@@ -6,7 +6,7 @@
 #include <numbers>
 
 
-Zombie::Zombie(Coords *hitBox, Coords *position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth, unsigned int damage, Coords* target):
+Zombie::Zombie(Coords *hitBox, Coords *position, unsigned short int speed, unsigned short int maxHealth, unsigned short int currentHealth, unsigned short int damage, Coords* target):
     Enemy(hitBox, position, speed, maxHealth, currentHealth, target), damage(damage)
 {
 }
@@ -43,7 +43,7 @@ void Zombie::moveOnlyY()
     position->addY(std::round(target->y() > position->y() ? moveAllowance : -1 * moveAllowance));
 }
 
-void Zombie::modifyHealth(int amount)
+void Zombie::modifyHealth(short int amount)
 {
     currentHealth += amount;
 }

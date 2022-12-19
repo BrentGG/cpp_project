@@ -17,7 +17,7 @@ public:
 
     Player* getPlayer();
     std::vector<Enemy*> getEnemies();
-    std::vector<ENEMY_TYPE> getEnemyTypes();
+    std::vector<Game::ENEMY_TYPE> getEnemyTypes();
 
 private:
     Game* gameModel;

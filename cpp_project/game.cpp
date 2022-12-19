@@ -1,19 +1,25 @@
 #include "game.h"
 #include "zombie.h"
+#include "vampire.h"
 
 Game::Game()
 {
     player = new Player(new Coords(5, 10), new Coords(250, 250), 100, 100, 100);
-    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(50, 25), 50, 100, 100, 100, player->getPosition()));
-    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(550, 25), 50, 100, 100, 100, player->getPosition()));
-    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(600, 50), 50, 100, 100, 100, player->getPosition()));
-    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(600, 550), 50, 100, 100, 100, player->getPosition()));
-    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(10, 50), 50, 100, 100, 100, player->getPosition()));
-    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(10, 550), 50, 100, 100, 100, player->getPosition()));
-    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(50, 600), 50, 100, 100, 100, player->getPosition()));
-    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(550, 600), 50, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(50, 25), 30, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(550, 25), 30, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(600, 50), 30, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(600, 550), 30, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(10, 50), 30, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(10, 550), 30, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(50, 600), 30, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(550, 600), 30, 100, 100, 100, player->getPosition()));
     for (int i = 0; i < (int)enemies.size(); ++i)
         enemyTypes.push_back(ZOMBIE);
+    enemies.push_back(new Vampire(new Coords(5, 10), new Coords(75, 10), 50, 50, 50, 150, player->getPosition()));
+    enemies.push_back(new Vampire(new Coords(5, 10), new Coords(420, 69), 50, 50, 50, 150, player->getPosition()));
+    enemies.push_back(new Vampire(new Coords(5, 10), new Coords(69, 420), 50, 50, 50, 150, player->getPosition()));
+    for (int i = 0; i < (int)enemies.size(); ++i)
+        enemyTypes.push_back(VAMPIRE);
 }
 
 Game::~Game()
@@ -79,7 +85,7 @@ std::vector<Enemy*> Game::getEnemies()
     return enemies;
 }
 
-std::vector<ENEMY_TYPE> Game::getEnemyTypes()
+std::vector<Game::ENEMY_TYPE> Game::getEnemyTypes()
 {
     return enemyTypes;
 }

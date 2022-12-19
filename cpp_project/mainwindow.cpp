@@ -2,9 +2,9 @@
 #include "ui_mainwindow.h"
 #include "playerdrawing.h"
 #include "zombiedrawing.h"
+#include "vampiredrawing.h"
 
 #include <QTimer>
-
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -20,9 +20,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     // Create canvas drawings
     canvas->addDrawing(new PlayerDrawing(gameController->getPlayer()));
-    for (int i = 0; i < gameController->getEnemies().size(); ++i) {
-        if (gameController->getEnemyTypes()[i] == ZOMBIE)
+    for (int i = 0; i < (int)gameController->getEnemies().size(); ++i) {
+        if (gameController->getEnemyTypes()[i] == Game::ZOMBIE)
             canvas->addDrawing(new ZombieDrawing((Zombie*) gameController->getEnemies()[i]));
+        else if (gameController->getEnemyTypes()[i] == Game::VAMPIRE)
+            canvas->addDrawing(new VampireDrawing((Vampire*) gameController->getEnemies()[i]));
     }
 
     // Set timer to update view

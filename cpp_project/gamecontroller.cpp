@@ -44,7 +44,7 @@ std::vector<Enemy*> GameController::getEnemies()
     return gameModel->getEnemies();
 }
 
-std::vector<ENEMY_TYPE> GameController::getEnemyTypes()
+std::vector<Game::ENEMY_TYPE> GameController::getEnemyTypes()
 {
     return gameModel->getEnemyTypes();
 }

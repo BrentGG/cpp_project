@@ -19,6 +19,8 @@ SOURCES += \
     mainwindow.cpp \
     player.cpp \
     playerdrawing.cpp \
+    vampire.cpp \
+    vampiredrawing.cpp \
     zombie.cpp \
     zombiedrawing.cpp
 
@@ -33,6 +35,8 @@ HEADERS += \
     mainwindow.h \
     player.h \
     playerdrawing.h \
+    vampire.h \
+    vampiredrawing.h \
     zombie.h \
     zombiedrawing.h
 

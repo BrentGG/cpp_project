@@ -1,17 +1,14 @@
-#define _USE_MATH_DEFINES
-
-#include "zombie.h"
+#include "vampire.h"
 
 #include <math.h>
 #include <numbers>
 
-
-Zombie::Zombie(Coords *hitBox, Coords *position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth, unsigned int damage, Coords* target):
+Vampire::Vampire(Coords *hitBox, Coords *position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth, unsigned int damage, Coords* target):
     Enemy(hitBox, position, speed, maxHealth, currentHealth, target), damage(damage)
 {
 }
 
-void Zombie::move(float timeDeltaMs)
+void Vampire::move(float timeDeltaMs)
 {
     moveAllowance += speed * (timeDeltaMs / 1000);
     moved = false;
@@ -27,23 +24,22 @@ void Zombie::move(float timeDeltaMs)
     *prevPosition = *position;
     position->addX(xDist);
     position->addY(yDist);
-
     moved = true;
     prevMoveAllowance = moveAllowance;
     moveAllowance = 0;
 }
 
-void Zombie::moveOnlyX()
+void Vampire::moveOnlyX()
 {
     position->addX(std::round(target->x() > position->x() ? moveAllowance : -1 * moveAllowance));
 }
 
-void Zombie::moveOnlyY()
+void Vampire::moveOnlyY()
 {
     position->addY(std::round(target->y() > position->y() ? moveAllowance : -1 * moveAllowance));
 }
 
-void Zombie::modifyHealth(int amount)
+void Vampire::modifyHealth(int amount)
 {
 
 }

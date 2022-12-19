@@ -1,7 +1,6 @@
 TEMPLATE = app
 CONFIG += console c++17
 CONFIG -= app_bundle
-CONFIG -= qt
 
 SOURCES += \
         calculatorapp.cpp \
@@ -9,3 +8,6 @@ SOURCES += \
 
 HEADERS += \
     calculatorapp.h
+
+DISTFILES += \
+    log.txt

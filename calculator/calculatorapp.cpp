@@ -1,17 +1,28 @@
 #include "calculatorapp.h"
 
 #include <iostream>
-#include <string>
+#include <QFile>
+#include <QTextStream>
+#include <QString>
 
 using namespace std;
 
 Calc::CalculatorApp::CalculatorApp()
 {
-
 }
 
-void Calc::CalculatorApp::run()
+void Calc::CalculatorApp::run(string saveFileLocation)
 {
+    QFile saveFile(QString::fromStdString(saveFileLocation));
+    try {
+        if (!saveFile.open(QIODevice::WriteOnly))
+            throw saveFileLocation;
+    } catch(string location) {
+        cout << "Could not open " << location << "\n";
+        exit(-1);
+    }
+    QTextStream saveFileStream(&saveFile);
+
     cout << "Welcome to the Calculator\n";
     cout << "-------------------------\n\n";
     while(1) {
@@ -34,7 +45,7 @@ void Calc::CalculatorApp::run()
             cin >> number1Str;
             try {
                 number1 = stof(number1Str);
-            } catch(invalid_argument) {
+            } catch(invalid_argument const&) {
                 cout << "Please provide a valid number.\n";
                 continue;
             }
@@ -48,7 +59,7 @@ void Calc::CalculatorApp::run()
             cin >> number2Str;
             try {
                 number2 = stof(number2Str);
-            } catch(invalid_argument) {
+            } catch(invalid_argument const&) {
                 cout << "Please provide a valid number.\n";
                 continue;
             }
@@ -72,8 +83,10 @@ void Calc::CalculatorApp::run()
             op = '/';
         }
         cout << number1 << " " << op << " " << number2 << " = " << result << "\n\n";
+        saveFileStream << number1 << " " << op << " " << number2 << " = " << result << "\n";
     }
     cout << "\nCome back soon!\n";
+    saveFile.close();
 }
 
 template<typename T> T Calc::CalculatorApp::add(const T number1, const T number2, T &result)

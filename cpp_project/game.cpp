@@ -12,8 +12,15 @@ Game::Game()
     enemies.push_back(new Zombie(new Coords(5, 10), new Coords(10, 550), 50, 100, 100, 100, player->getPosition()));
     enemies.push_back(new Zombie(new Coords(5, 10), new Coords(50, 600), 50, 100, 100, 100, player->getPosition()));
     enemies.push_back(new Zombie(new Coords(5, 10), new Coords(550, 600), 50, 100, 100, 100, player->getPosition()));
-    for (int i = 0; i < enemies.size(); ++i)
+    for (int i = 0; i < (int)enemies.size(); ++i)
         enemyTypes.push_back(ZOMBIE);
+}
+
+Game::~Game()
+{
+    delete player;
+    for (int i = 0; i < (int)enemies.size(); ++i)
+        delete enemies[i];
 }
 
 void Game::tick(float timeDeltaMs)

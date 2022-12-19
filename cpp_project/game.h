@@ -14,6 +14,7 @@ class Game
 {
 public:
     Game();
+    ~Game();
 
     void tick(float timeDeltaMs);
     bool checkEnemyCollosion(Enemy* enemy1, Enemy* enemy2);

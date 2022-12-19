@@ -12,7 +12,7 @@ class Character
 {
 public:
     Character(Coords* hitBox, Coords* position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth);
-    ~Character();
+    virtual ~Character();
 
     virtual void move(float timeDeltaMs) = 0;
     virtual void modifyHealth(int amount) = 0;

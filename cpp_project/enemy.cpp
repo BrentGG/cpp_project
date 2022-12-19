@@ -1,12 +1,5 @@
 #include "enemy.h"
 
-#include <iostream>
-
-Enemy::Enemy()
-{
-
-}
-
 Enemy::Enemy(Coords *hitBox, Coords *position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth, Coords* target):
     Character(hitBox, position, speed, maxHealth, currentHealth), target(target)
 {

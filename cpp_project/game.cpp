@@ -1,16 +1,19 @@
 #include "game.h"
+#include "zombie.h"
 
 Game::Game()
 {
     player = new Player(new Coords(5, 10), new Coords(250, 250), 100, 100, 100);
-    zombies.push_back(new Zombie(new Coords(5, 10), new Coords(50, 25), 50, 100, 100, 100, player->getPosition()));
-    zombies.push_back(new Zombie(new Coords(5, 10), new Coords(550, 25), 50, 100, 100, 100, player->getPosition()));
-    zombies.push_back(new Zombie(new Coords(5, 10), new Coords(600, 50), 50, 100, 100, 100, player->getPosition()));
-    zombies.push_back(new Zombie(new Coords(5, 10), new Coords(600, 550), 50, 100, 100, 100, player->getPosition()));
-    zombies.push_back(new Zombie(new Coords(5, 10), new Coords(10, 50), 50, 100, 100, 100, player->getPosition()));
-    zombies.push_back(new Zombie(new Coords(5, 10), new Coords(10, 550), 50, 100, 100, 100, player->getPosition()));
-    zombies.push_back(new Zombie(new Coords(5, 10), new Coords(50, 600), 50, 100, 100, 100, player->getPosition()));
-    zombies.push_back(new Zombie(new Coords(5, 10), new Coords(550, 600), 50, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(50, 25), 50, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(550, 25), 50, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(600, 50), 50, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(600, 550), 50, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(10, 50), 50, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(10, 550), 50, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(50, 600), 50, 100, 100, 100, player->getPosition()));
+    enemies.push_back(new Zombie(new Coords(5, 10), new Coords(550, 600), 50, 100, 100, 100, player->getPosition()));
+    for (int i = 0; i < enemies.size(); ++i)
+        enemyTypes.push_back(ZOMBIE);
 }
 
 void Game::tick(float timeDeltaMs)
@@ -19,34 +22,17 @@ void Game::tick(float timeDeltaMs)
     player->move(timeDeltaMs);
 
     // move enemies
-    for (Zombie* zombie : zombies) {
-        zombie->setTarget(player->getPosition());
-        zombie->move(timeDeltaMs);
-    }
-
-    // check collisions
-    checkEnemyCollisions();
-}
-
-void Game::checkEnemyCollisions()
-{
-    std::vector<Enemy*> enemies;
-    enemies.insert(enemies.end(), zombies.begin(), zombies.end());
-
-    for (int i = 0; i < enemies.size(); ++i) {
-        for (int j = 0; j < enemies.size(); ++j) {
-            if (i == j)
-                continue;
-            if (checkEnemyCollosion(enemies[i], enemies[j]) && enemies[i]->getMoved()) {
-                enemies[i]->revertPosition();
-                enemies[i]->moveOnlyX();
-                if (checkEnemyCollosion(enemies[i], enemies[j])) {
-                    enemies[i]->revertPosition();
-                    enemies[i]->moveOnlyY();
-                    if (checkEnemyCollosion(enemies[i], enemies[j]))
-                        enemies[i]->revertPosition();
-                }
-                break;
+    for (Enemy* enemy : enemies) {
+        enemy->setTarget(player->getPosition());
+        enemy->move(timeDeltaMs);
+        if (checkEnemyCollides(enemy) && enemy->getMoved()) {
+            enemy->revertPosition();
+            enemy->moveOnlyX();
+            if (checkEnemyCollides(enemy)) {
+                enemy->revertPosition();
+                enemy->moveOnlyY();
+                if (checkEnemyCollides(enemy))
+                    enemy->revertPosition();
             }
         }
     }
@@ -67,12 +53,26 @@ bool Game::checkEnemyCollosion(Enemy* enemy1, Enemy* enemy2)
     return false;
 }
 
+bool Game::checkEnemyCollides(Enemy *enemy)
+{
+    for (Enemy* enemy2 : enemies) {
+        if (enemy != enemy2 && checkEnemyCollosion(enemy, enemy2))
+            return true;
+    }
+    return false;
+}
+
 Player *Game::getPlayer()
 {
     return player;
 }
 
-std::vector<Zombie*> Game::getZombies()
+std::vector<Enemy*> Game::getEnemies()
 {
-    return zombies;
+    return enemies;
+}
+
+std::vector<ENEMY_TYPE> Game::getEnemyTypes()
+{
+    return enemyTypes;
 }

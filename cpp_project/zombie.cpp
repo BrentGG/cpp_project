@@ -7,10 +7,6 @@
 
 #include <iostream>
 
-Zombie::Zombie()
-{
-}
-
 Zombie::Zombie(Coords *hitBox, Coords *position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth, unsigned int damage, Coords* target):
     Enemy(hitBox, position, speed, maxHealth, currentHealth, target), damage(damage)
 {

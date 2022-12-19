@@ -6,7 +6,6 @@
 class Zombie : public Enemy
 {
 public:
-    Zombie();
     Zombie(Coords* hitBox, Coords* position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth, unsigned int damage, Coords* target);
 
     void move(float timeDeltaMs) override;

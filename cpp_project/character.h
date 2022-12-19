@@ -11,7 +11,6 @@
 class Character
 {
 public:
-    Character();
     Character(Coords* hitBox, Coords* position, unsigned int speed, unsigned int maxHealth, unsigned int currentHealth);
     ~Character();
 

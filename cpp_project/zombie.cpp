@@ -45,5 +45,5 @@ void Zombie::moveOnlyY()
 
 void Zombie::modifyHealth(int amount)
 {
-
+    currentHealth += amount;
 }

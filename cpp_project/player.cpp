@@ -52,7 +52,7 @@ void Player::move(float timeDeltaMs)
 
 void Player::modifyHealth(int amount)
 {
-    // TODO
+    currentHealth += amount;
 }
 
 void Player::setGoingUp(bool goingUp)

@@ -41,5 +41,5 @@ void Vampire::moveOnlyY()
 
 void Vampire::modifyHealth(int amount)
 {
-
+    currentHealth += amount;
 }
